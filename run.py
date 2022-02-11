@@ -76,16 +76,25 @@ def restrict_np_of_letters(file_name, n):
 
 def filter_words(no_of_letters):
     fi = open('words_alpha.txt', 'r')
+    out = open('words_alpha_'+str(no_of_letters)+'.txt', 'w')
 
-    for i in 
+
+    for word in fi.readlines():
+        if len(word.strip('\n')) == no_of_letters:
+            out.writelines(word)
+        else:
+            continue
+            # print(word.strip('\n'))
 
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print("Requires 2 parameters")
-        exit()
+    # if len(sys.argv) < 2:
+    #     print("Requires 2 parameters")
+    #     exit()
     # my_dict, my_dict_file_name = make_json(sys.argv[1])
-    my_short_dict = restrict_np_of_letters("my_dict.json", 5)
+    # my_short_dict = restrict_np_of_letters("my_dict.json", 5)
+
+    filter_words(5)
 
 
     # print(my_dict)
