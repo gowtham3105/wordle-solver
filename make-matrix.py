@@ -1,6 +1,6 @@
 import json
 
-f = open("words_alpha_5.txt", "r")
+f = open("wordle_words_5.txt", "r")
 l=[{} for i in range(5)]
 #dictionary['a'] of the dictionary at index 0, indictes the number of letter with a in 0th position
 for line in f.readlines():

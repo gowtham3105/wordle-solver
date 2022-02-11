@@ -87,6 +87,8 @@ def filter_words(no_of_letters):
             # print(word.strip('\n'))
 
 
+
+
 if __name__ == "__main__":
     # if len(sys.argv) < 2:
     #     print("Requires 2 parameters")
@@ -94,7 +96,29 @@ if __name__ == "__main__":
     # my_dict, my_dict_file_name = make_json(sys.argv[1])
     # my_short_dict = restrict_np_of_letters("my_dict.json", 5)
 
-    filter_words(5)
+    # filter_words(5)
 
 
     # print(my_dict)
+
+    fi = open("wordle_words.txt", "r")
+    out = open("wordle_words_5.txt", "w")
+    for line in fi.readlines():
+        my_line = line.strip('\n')
+        my_line = line.split(', ')
+        # print(my_line)
+        for word in my_line:
+            
+            new_word = word.replace('"', "")
+            # print(new_word, len(new_word))
+            # new_word=new_word.replace('-', " ")
+
+            if len(new_word) == 5:
+                out.writelines(new_word+'\n')
+            else:
+                continue
+        
+    
+    out.close()
+    fi.close()
+            # print(i.strip('\n'))
