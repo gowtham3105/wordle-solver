@@ -1,3 +1,5 @@
+import json
+
 f = open("words_alpha_5.txt", "r")
 l=[{} for i in range(5)]
 #dictionary['a'] of the dictionary at index 0, indictes the number of letter with a in 0th position
@@ -13,5 +15,10 @@ for j in range(5):
         if chr(i) not in l[j].keys():
             l[j][chr(i)]=0
 print(l)
+
+# save the dictionary
+out = open("letter_frequency.json", "w")
+json.dump(l, out)
+out.close()
 
 
