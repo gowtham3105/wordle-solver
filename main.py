@@ -13,6 +13,10 @@ class Word:
         for line in fi.readlines():
             word = line.strip('\n')
             self.neighbours.append(word)
+
+            
+
+
         
 
     def filter_words(self):
@@ -129,7 +133,26 @@ class Word:
 
 
 def main():
-    initial_word = input("Enter the Initial Word(SOARE and CRANE are good starting points): ")
+    
+    best_word = ""
+    best_heuristic = 0
+    fi = open('letter_frequency.json', 'r')
+    frequency_matrix = json.load(fi)
+    fi.close()
+    fi = open('wordle_words_5.txt', 'r')
+    for line in fi.readlines():
+        word = line.strip('\n')
+        heuristic=0
+        for i in range(len(word)):
+            heuristic+=frequency_matrix[i][word[i]]
+            # print(neighbour, heuristic)
+        if heuristic > best_heuristic:
+            best_heuristic = heuristic
+            best_word =word
+    print("best initial word", best_word)
+    initial_word=best_word                       
+
+    # initial_word = input("Enter the Initial Word(SOARE and CRANE are good starting points): ")
     
     
     # not_fixed_letters_positions = {}
@@ -179,3 +202,4 @@ def main():
 
 
 main()
+
