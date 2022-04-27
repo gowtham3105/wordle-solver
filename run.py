@@ -41,7 +41,6 @@ def restrict_np_of_letters(file_name, n):
     fi = open(file_name, "r")
     data = fi.read()
     my_dict = json.loads(data)
-    # my_dict = json.load(fi)
     fi.close()
     def go_through_dict(dictionary, n):
         if n == 0:
@@ -52,9 +51,7 @@ def restrict_np_of_letters(file_name, n):
             if key == "word":
                 continue
             if n == 1:
-                # print(key,dictionary, "before pop")
                 dictionary.pop(key)
-                # print(key, dictionary)
             else:
                 go_through_dict(dictionary[key], n-1)
 
@@ -69,11 +66,6 @@ def restrict_np_of_letters(file_name, n):
 
     return my_dict
 
-# def find_words(file_name, letters):
-#     for i in range(len(letters)):
-#         letters[i] = letters[i].lower()
-
-
 def filter_words(no_of_letters):
     fi = open('words_alpha.txt', 'r')
     out = open('words_alpha_'+str(no_of_letters)+'.txt', 'w')
@@ -84,22 +76,11 @@ def filter_words(no_of_letters):
             out.writelines(word)
         else:
             continue
-            # print(word.strip('\n'))
 
 
 
 
 if __name__ == "__main__":
-    # if len(sys.argv) < 2:
-    #     print("Requires 2 parameters")
-    #     exit()
-    # my_dict, my_dict_file_name = make_json(sys.argv[1])
-    # my_short_dict = restrict_np_of_letters("my_dict.json", 5)
-
-    # filter_words(5)
-
-
-    # print(my_dict)
 
     fi = open("wordle_words.txt", "r")
     out = open("wordle_words_5.txt", "w")
@@ -108,11 +89,7 @@ if __name__ == "__main__":
         my_line = line.split(', ')
         # print(my_line)
         for word in my_line:
-            
             new_word = word.replace('"', "")
-            # print(new_word, len(new_word))
-            # new_word=new_word.replace('-', " ")
-
             if len(new_word) == 5:
                 out.writelines(new_word+'\n')
             else:
@@ -121,4 +98,3 @@ if __name__ == "__main__":
     
     out.close()
     fi.close()
-            # print(i.strip('\n'))

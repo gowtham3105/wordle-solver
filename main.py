@@ -14,63 +14,20 @@ class Word:
             word = line.strip('\n')
             self.neighbours.append(word)
 
-            
-
-
-        
-
     def filter_words(self):
-        # wordss = ['apple', 'applr', 'appln', 'applt', 'apptt', 'attrp', 'trtra']
         neighbours = []
-        # keys = [0,1,2,3,4]
-
-       
-
-
-
-
-        # for i in self.fixed_letter_positions.keys():
-        #     if i in keys:
-        #         keys.remove(i)
-        
-            
-        # for i in keys:
-        #     if self.word[i] in self.letter_present_list:
-        #         flag=0
-        #         for j in self.not_fixed_letter_positions.keys():
-        #             if self.word[i] in self.not_fixed_letter_positions[j]:
-        #                 flag=1
-        #         if flag==0:
-        #             if i not in self.not_fixed_letter_positions:
-        #                 self.not_fixed_letter_positions[i] = [self.word[i],]
-        #             else:
-        #                 self.not_fixed_letter_positions[i].append(self.word[i])
-
-        # print(self.not_fixed_letter_positions)
 
         for word in self.neighbours:
             word = word.strip('\n')
             word_quit = False
                         
             for pos, letter in self.fixed_letter_positions.items():
-                # print(pos, letter, word[pos])
                 if word[pos] != letter:
                     word_quit = True
                     break
             
             if word_quit:
-                # print("word quit111", word)
                 continue
-                
-            # for pos, letter in self.not_fixed_letter_postions.items():
-            #     if word[pos] == letter:
-            #         word_quit=True
-            #         break   
-                    
-            # if word_quit:
-            #     # print("word quit111", word)
-            #     continue
-
 
             word_list = list(word)
             for i in self.letter_present_list:
@@ -79,10 +36,7 @@ class Word:
                     break
             
             if word_quit:
-                # print("word quit111", word)
                 continue
-            
-           
                     
             for i in range(len(word)):
                 if i in self.not_fixed_letter_positions.keys():
@@ -93,9 +47,7 @@ class Word:
             if word_quit:
                 continue
             
-           
             for letter in self.letter_not_present_list:
-                # print(self.letter_not_present_list)
                 if letter in word:
                     word_quit = True
                     break
@@ -104,7 +56,6 @@ class Word:
                 continue
             
             neighbours.append(word)
-            # print(word)
         neighbours.sort()
         self.neighbours = neighbours
         print(neighbours)
@@ -122,7 +73,6 @@ class Word:
             heuristic=0
             for i in range(len(neighbour)):
                 heuristic+=frequency_matrix[i][neighbour[i]]
-            # print(neighbour, heuristic)
             if heuristic > best_heuristic:
                 best_heuristic = heuristic
                 best_word = neighbour
@@ -145,23 +95,19 @@ def main():
         heuristic=0
         for i in range(len(word)):
             heuristic+=frequency_matrix[i][word[i]]
-            # print(neighbour, heuristic)
         if heuristic > best_heuristic:
             best_heuristic = heuristic
             best_word =word
     print("best initial word", best_word)
     initial_word=best_word                       
 
-    # initial_word = input("Enter the Initial Word(SOARE and CRANE are good starting points): ")
     
     
-    # not_fixed_letters_positions = {}
     word = Word(initial_word)
 
     tries = 0
     while(tries<6 and len(word.neighbours)>1):
         fixed_letter_str = input("Enter the fixed_letters(in the example format _a_c_): ")
-        # not_fixed_letter_str = input("Enter the not_fixed_letter(in the example format _b_d_): ")
 
         for i in range(len(fixed_letter_str)):
             if fixed_letter_str[i] != '_':
@@ -179,7 +125,6 @@ def main():
         word.letter_present_list = letter_present_dict.values()
         
         print(letter_present_dict)
-        # vis = [a r t]
         not_fixed_list = word.not_fixed_letter_positions
 
         for key in letter_present_dict:
